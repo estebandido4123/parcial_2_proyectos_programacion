@@ -1,0 +1,32 @@
+# Archivos de entorno (¡Muy importante para proteger credenciales de la base de datos!)
+.env
+env
+
+# Dependencias de Composer
+vendor/
+
+# Archivos de la carpeta writable (caché, logs, sesiones, subidas de usuarios)
+writable/cache/*
+!writable/cache/index.html
+writable/logs/*
+!writable/logs/index.html
+writable/session/*
+!writable/session/index.html
+writable/uploads/*
+!writable/uploads/index.html
+writable/debugbar/*
+!writable/debugbar/index.html
+
+# Archivos de pruebas
+.phpunit.result.cache
+build/
+
+# Configuración de IDEs y editores de código
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
