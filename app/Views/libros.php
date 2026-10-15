@@ -49,9 +49,15 @@
                                 <input type="number" step="0.01" name="txt_precio" id="txt_precio" class="form-control" placeholder="0.00">
                             </div>
 
+            
                             <div class="mb-3">
-                                <label for="txt_editorial_id" class="form-label fw-bold">ID Editorial: </label>
-                                <input type="number" name="txt_editorial_id" id="txt_editorial_id" class="form-control" placeholder="ID de la editorial">
+                                <label for="txt_editorial_id" class="form-label fw-bold">Editorial: </label>
+                                <select name="txt_editorial_id" id="txt_editorial_id" class="form-select" required>
+                                    <option value="" disabled selected>Seleccione una editorial...</option>
+                                    <?php foreach ($editoriales as $edit): ?>
+                                        <option value="<?= $edit['id']; ?>"><?= $edit['nombre']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">

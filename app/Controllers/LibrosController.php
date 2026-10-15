@@ -1,13 +1,18 @@
 <?php
 namespace App\Controllers;
 use App\Models\LibrosModel;
+use App\Models\EditorialesModel; // Importamos el modelo de editoriales
 
 class LibrosController extends BaseController
 {
     public function index_libros(): string
     {
         $libro = new LibrosModel();
+        $editorial = new EditorialesModel(); // Instanciamos el modelo de editoriales
+        
         $datos['datos'] = $libro->findAll();
+        $datos['editoriales'] = $editorial->findAll(); // Mandamos todas las editoriales a la vista
+        
         return view('libros', $datos);
     }
 
@@ -23,7 +28,7 @@ class LibrosController extends BaseController
         $libro = new LibrosModel();
         $libro->insert($datos);
         
-        return $this->index_libros();
+        return redirect()->to(base_url('libros')); // Usamos redirect por seguridad tras un POST
     }
 
     public function eliminar($codigo)
@@ -31,13 +36,17 @@ class LibrosController extends BaseController
         $libro = new LibrosModel();
         $libro->delete($codigo);
         
-        return $this->index_libros();   
+        return redirect()->to(base_url('libros'));
     }
 
     public function buscar_libro($codigo)
     {
         $libro = new LibrosModel();
+        $editorial = new EditorialesModel();
+        
         $datos['datos'] = $libro->find($codigo);
+        $datos['editoriales'] = $editorial->findAll(); // Mandamos las editoriales para el Select
+        
         return view('form_modificar_libro', $datos);   
     }
 
@@ -54,6 +63,6 @@ class LibrosController extends BaseController
         ];
         $libro->update($codigo, $datos);
         
-        return $this->index_libros();
+        return redirect()->to(base_url('libros'));
     }        
 }
